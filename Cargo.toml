@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 penrose = "0.3.4"
+penrose_ui = "0.3.4"
+simplelog = "0.8"

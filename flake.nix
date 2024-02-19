@@ -1,5 +1,5 @@
 {
-  description = "cve-detection";
+  description = "my_window_manager";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
@@ -19,6 +19,12 @@
             clang
             llvmPackages.bintools
             rustup
+
+            # penrose ui dependencies
+            pkg-config
+            fontconfig
+            xorg.libX11
+            xorg.libXft
 
           ];
 
@@ -43,10 +49,9 @@
           BINDGEN_EXTRA_CLANG_ARGS = 
             (builtins.map (a: ''-I"${a}/include"'') [
               pkgs.pkg-config 
-              pkgs.openssl.dev
-              pkgs.glibc.dev 
               pkgs.fontconfig.dev
-              pkgs.freetype.dev
+              pkgs.xorg.libX11
+              pkgs.xorg.libXft
             ])
             ++ [
               ''-I"${pkgs.llvmPackages_latest.libclang.lib}/lib/clang/${pkgs.llvmPackages_latest.libclang.version}/include"''
